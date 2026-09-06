@@ -90,10 +90,10 @@ importers:
         specifier: ^26.2.0
         version: 26.2.0
       '@types/react':
-        specifier: ^19.2.18
+        specifier: 19.2.18
         version: 19.2.18
       '@types/react-dom':
-        specifier: ^19.2.5
+        specifier: 19.2.7
         version: 19.2.7(@types/react@19.2.18)
       '@vercel/node':
         specifier: ^5.10.2
