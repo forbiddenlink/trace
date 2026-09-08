@@ -56,11 +56,6 @@ export function stripTypeScript(code: string): string {
     return result;
 }
 
-// Add Tailwind CDN script to make styles work
-export function wrapWithTailwind(code: string): string {
-    return code;
-}
-
 // Format code for display (basic indentation fix)
 export function formatCode(code: string): string {
     return code
