@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/forbiddenlink/trace/compare/v1.0.4...v1.0.5) (2026-09-09)
+
+
+### Bug Fixes
+
+* **deps:** replace framer-motion with motion, keep the audit report ([#85](https://github.com/forbiddenlink/trace/issues/85)) ([9520818](https://github.com/forbiddenlink/trace/commit/952081867e516c1e5ab2573bd58674eddd1fac8e))
+* **seo:** add robots.txt, sitemap.xml, llms.txt, and canonical tag ([#76](https://github.com/forbiddenlink/trace/issues/76)) ([5c998cf](https://github.com/forbiddenlink/trace/commit/5c998cf9ab743a9331fcf020e2555a3686917038))
+
 ## [1.0.4](https://github.com/forbiddenlink/trace/compare/v1.0.3...v1.0.4) (2026-09-03)
 
 
