@@ -29,7 +29,7 @@
     "axe-core": "^4.13.0",
     "clsx": "^2.1.1",
     "esbuild": "^0.28.2",
-    "motion": "^12.43.0",
+    "motion": "^13.0.0",
     "react": "^19.2.8",
     "react-compare-slider": "^4.0.0",
     "react-dom": "^19.2.8",
