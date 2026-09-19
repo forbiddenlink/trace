@@ -79,5 +79,3 @@ Server-side (`api/generate.ts`, `vite.config.ts`): `GOOGLE_GENERATIVE_AI_API_KEY
 
 - The accessibility score from axe-core catches roughly half of WCAG issues per the
   README; treat it as directional, not a certification.
-- `componentcompass-docs.tar.gz` at repo root and `.specter/` are leftovers from the
-  project's earlier ComponentCompass identity; not part of the current app.
