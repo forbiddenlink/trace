@@ -49,7 +49,7 @@ Sandpack live render  (editable React + TS, Tailwind via CDN)
 |-------|------------|
 | Framework | Vite, React 19, TypeScript (strict) |
 | Styling | Tailwind CSS (precision-drafting theme: vellum, graphite, vermilion) |
-| AI | `@ai-sdk/google` + `ai` v6, model `gemini-2.5-flash` |
+| AI | `@ai-sdk/google` + `ai` v7, model `gemini-2.5-flash` |
 | Sandbox | `@codesandbox/sandpack-react` (Tailwind via CDN) |
 | Accessibility | `axe-core` (loaded from CDN) |
 | Validation | `zod` |
