@@ -66,7 +66,7 @@ importers:
         version: 4.5.4
     devDependencies:
       '@biomejs/biome':
-        specifier: ^2.5.11
+        specifier: 2.5.12
         version: 2.5.12
       '@eslint/js':
         specifier: 10.0.1
