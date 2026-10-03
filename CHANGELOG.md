@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.6](https://github.com/forbiddenlink/trace/compare/v1.0.5...v1.0.6) (2026-10-03)
+
+
+### Bug Fixes
+
+* **deps:** apply override fix plan ([#98](https://github.com/forbiddenlink/trace/issues/98)) ([c5f4132](https://github.com/forbiddenlink/trace/commit/c5f41323d90eb121da4971edee2e94314fc9ac59))
+* **deps:** apply override fix plan (round 2) ([#99](https://github.com/forbiddenlink/trace/issues/99)) ([80efed2](https://github.com/forbiddenlink/trace/commit/80efed2e6e6d19ebbd98d44736b106509216c3b5))
+* guard view transition against hidden tabs (TRACE-1) ([#100](https://github.com/forbiddenlink/trace/issues/100)) ([d7b790f](https://github.com/forbiddenlink/trace/commit/d7b790f902de708f5a05c24f857b652da7db8f01))
+
 ## [1.0.5](https://github.com/forbiddenlink/trace/compare/v1.0.4...v1.0.5) (2026-09-09)
 
 
