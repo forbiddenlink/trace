@@ -71,7 +71,8 @@ function withViewTransition(update: () => void): void {
     const noop = (): void => {};
     transition?.ready?.catch(noop);
     transition?.finished?.catch(noop);
-    transition?.updateCallbackDone?.catch(noop);
+    // Unlike ready/finished, this rejects when update() itself throws, so surface it.
+    transition?.updateCallbackDone?.catch((error: unknown) => console.error(error));
   } else {
     update();
   }
