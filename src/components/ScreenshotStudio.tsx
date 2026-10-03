@@ -58,10 +58,21 @@ type Status = 'idle' | 'loading' | 'ready' | 'error';
  */
 function withViewTransition(update: () => void): void {
   const doc = document as Document & {
-    startViewTransition?: (cb: () => void) => unknown;
+    startViewTransition?: (cb: () => void) => {
+      ready?: Promise<unknown>;
+      finished?: Promise<unknown>;
+      updateCallbackDone?: Promise<unknown>;
+    };
   };
-  if (typeof doc.startViewTransition === 'function') {
-    doc.startViewTransition(update);
+  // A hidden tab aborts the transition with InvalidStateError, so skip it.
+  if (typeof doc.startViewTransition === 'function' && document.visibilityState === 'visible') {
+    const transition = doc.startViewTransition(update);
+    // Aborted transitions reject these promises; the cosmetic fade is not worth an unhandled rejection.
+    const noop = (): void => {};
+    transition?.ready?.catch(noop);
+    transition?.finished?.catch(noop);
+    // Unlike ready/finished, this rejects when update() itself throws, so surface it.
+    transition?.updateCallbackDone?.catch((error: unknown) => console.error(error));
   } else {
     update();
   }
