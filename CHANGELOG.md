@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.7](https://github.com/forbiddenlink/trace/compare/v1.0.6...v1.0.7) (2026-10-19)
+
+
+### Bug Fixes
+
+* **deps:** clear transitive CVEs with bounded overrides ([#107](https://github.com/forbiddenlink/trace/issues/107)) ([8b83cd5](https://github.com/forbiddenlink/trace/commit/8b83cd5b800e0ad0bbf08ba6f5fe370bb57eb3e2))
+
 ## [1.0.6](https://github.com/forbiddenlink/trace/compare/v1.0.5...v1.0.6) (2026-10-13)
 
 
