@@ -14,17 +14,32 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
+      # A GitHub App token makes the release PR an ordinary PR event, so CI runs
+      # on it with no approval gate. GITHUB_TOKEN-opened PRs get their
+      # pull_request runs parked at action_required, which blocks the merge.
+      # Falls back to GITHUB_TOKEN + workflow_dispatch until the app is set up.
+      - name: Mint release app token
+        id: app-token
+        if: ${{ vars.RELEASE_APP_ID != '' }}
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          permission-contents: write
+          permission-pull-requests: write
+          permission-issues: write
+
       - uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5
         id: release
         with:
           release-type: node
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ steps.app-token.outputs.token || secrets.GITHUB_TOKEN }}
 
       # A PR opened with GITHUB_TOKEN never starts pull_request workflows, so the
       # release PR would merge with its tests never run. workflow_dispatch is the one
       # event GITHUB_TOKEN may start, and the run's checks land on the PR head commit.
       - name: Run CI on the release PR
-        if: ${{ steps.release.outputs.pr }}
+        if: ${{ steps.release.outputs.pr && steps.app-token.outputs.token == '' }}
         env:
           GH_TOKEN: ${{ github.token }}
           PR_JSON: ${{ steps.release.outputs.pr }}
