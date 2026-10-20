@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.8](https://github.com/forbiddenlink/trace/compare/v1.0.7...v1.0.8) (2026-10-20)
+
+
+### Bug Fixes
+
+* **deps:** cap unbounded pnpm overrides at the next major ([#111](https://github.com/forbiddenlink/trace/issues/111)) ([0d0fd28](https://github.com/forbiddenlink/trace/commit/0d0fd28eb90583f2fc7bae04768adbe8ce83ee9d))
+
 ## [1.0.7](https://github.com/forbiddenlink/trace/compare/v1.0.6...v1.0.7) (2026-10-19)
 
 
