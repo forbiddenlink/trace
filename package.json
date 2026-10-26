@@ -57,11 +57,11 @@
     "eslint-plugin-react-refresh": "0.5.7",
     "globals": "17.13.0",
     "jsdom": "30.1.3",
-    "postcss": "8.5.30",
+    "postcss": "8.5.31",
     "tailwindcss": "4.3.3",
     "typescript": "6.0.3",
     "typescript-eslint": "8.68.0",
-    "vite": "8.2.4",
+    "vite": "8.3.5",
     "vitest": "4.1.12"
   },
   "description": "Paste a screenshot, get a real, runnable React component. AI screenshot-to-component with design-system grounding, live preview, self-repair, and an accessibility score.",
@@ -88,5 +88,5 @@
       "brace-expansion@1": ">=1.1.21 <2.0.0"
     }
   },
-  "packageManager": "pnpm@10.34.6"
+  "packageManager": "pnpm@10.34.7"
 }
