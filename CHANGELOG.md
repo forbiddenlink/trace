@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.9](https://github.com/forbiddenlink/trace/compare/v1.0.8...v1.0.9) (2026-10-27)
+
+
+### Bug Fixes
+
+* **deps:** bump vitest to 4.1.12 and raise undici floor to 7.30.1 ([#118](https://github.com/forbiddenlink/trace/issues/118)) ([ab2a1fb](https://github.com/forbiddenlink/trace/commit/ab2a1fb79bc364a250a05d991efdf4aaab5e333a))
+
 ## [1.0.8](https://github.com/forbiddenlink/trace/compare/v1.0.7...v1.0.8) (2026-10-20)
 
 
