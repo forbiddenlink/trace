@@ -13,7 +13,7 @@ import { cn } from '../lib/utils';
 import { imageToBase64 } from '../services/vision';
 import { GALLERY_EXAMPLES } from '../data/gallery';
 import { TraceLines } from './TraceLines';
-import { AmbientTrace } from './AmbientTrace';
+import { TracePlate } from './TracePlate';
 import {
   A11Y_ENTRY_SOURCE,
   A11Y_RUNNER_SOURCE,
@@ -83,18 +83,18 @@ const SAMPLE_DATA_URL =
   'data:image/svg+xml;base64,' +
   btoa(
     `<svg xmlns="http://www.w3.org/2000/svg" width="640" height="400">
-      <rect width="640" height="400" fill="#F4F1EA"/>
-      <rect x="40" y="40" width="560" height="120" rx="4" fill="#FBFAF5" stroke="#1F2933" stroke-opacity="0.12"/>
-      <text x="64" y="84" font-family="sans-serif" font-size="22" fill="#1F2933">Welcome back</text>
-      <text x="64" y="116" font-family="sans-serif" font-size="14" fill="#1F2933" opacity="0.7">Sign in to continue</text>
-      <rect x="40" y="190" width="560" height="44" rx="3" fill="#fff" stroke="#1F2933" stroke-opacity="0.22"/>
-      <text x="56" y="218" font-family="sans-serif" font-size="13" fill="#1F2933" opacity="0.55">Email</text>
-      <rect x="40" y="250" width="560" height="44" rx="3" fill="#fff" stroke="#1F2933" stroke-opacity="0.22"/>
-      <text x="56" y="278" font-family="sans-serif" font-size="13" fill="#1F2933" opacity="0.55">Password</text>
-      <rect x="40" y="320" width="180" height="44" rx="3" fill="#C5482E"/>
+      <rect width="640" height="400" fill="#D9E9F3"/>
+      <rect x="40" y="40" width="560" height="120" rx="4" fill="#EAF3F9" stroke="#0C1F30" stroke-opacity="0.12"/>
+      <text x="64" y="84" font-family="sans-serif" font-size="22" fill="#0C1F30">Welcome back</text>
+      <text x="64" y="116" font-family="sans-serif" font-size="14" fill="#0C1F30" opacity="0.7">Sign in to continue</text>
+      <rect x="40" y="190" width="560" height="44" rx="3" fill="#fff" stroke="#0C1F30" stroke-opacity="0.22"/>
+      <text x="56" y="218" font-family="sans-serif" font-size="13" fill="#0C1F30" opacity="0.55">Email</text>
+      <rect x="40" y="250" width="560" height="44" rx="3" fill="#fff" stroke="#0C1F30" stroke-opacity="0.22"/>
+      <text x="56" y="278" font-family="sans-serif" font-size="13" fill="#0C1F30" opacity="0.55">Password</text>
+      <rect x="40" y="320" width="180" height="44" rx="3" fill="#0A6B8C"/>
       <text x="92" y="348" font-family="sans-serif" font-size="14" fill="#fff">Sign in</text>
-      <rect x="236" y="320" width="140" height="44" rx="3" fill="#fff" stroke="#C5482E"/>
-      <text x="272" y="348" font-family="sans-serif" font-size="14" fill="#C5482E">Cancel</text>
+      <rect x="236" y="320" width="140" height="44" rx="3" fill="#fff" stroke="#0A6B8C"/>
+      <text x="272" y="348" font-family="sans-serif" font-size="14" fill="#0A6B8C">Cancel</text>
     </svg>`,
   );
 
@@ -131,7 +131,7 @@ async function svgDataUrlToPng(svgDataUrl: string, width: number, height: number
   const ctx = canvas.getContext('2d');
   if (!ctx) throw new Error('Could not render the sample image.');
   // Flat parchment ground so any transparent SVG regions become opaque pixels.
-  ctx.fillStyle = '#F4F1EA';
+  ctx.fillStyle = '#D9E9F3';
   ctx.fillRect(0, 0, width, height);
   ctx.drawImage(img, 0, 0, width, height);
   return canvas.toDataURL('image/png');
@@ -705,7 +705,7 @@ function CompareRuler({ orient }: { orient: 'h' | 'v' }) {
                 x2={n + 0.5}
                 y1={n === 0 ? 4 : 10}
                 y2={16}
-                stroke="rgba(31,41,51,0.28)"
+                stroke="rgba(12,31,48,0.28)"
                 strokeWidth={1}
               />
             ) : (
@@ -715,7 +715,7 @@ function CompareRuler({ orient }: { orient: 'h' | 'v' }) {
                 y2={n + 0.5}
                 x1={n === 0 ? 4 : 10}
                 x2={16}
-                stroke="rgba(31,41,51,0.28)"
+                stroke="rgba(12,31,48,0.28)"
                 strokeWidth={1}
               />
             ),
@@ -739,7 +739,7 @@ function CompareHandle() {
       <div className="absolute inset-y-0 w-px bg-compass/70" />
       <motion.div
         className="relative grid h-9 w-9 place-items-center rounded-full border border-compass bg-warm-white"
-        style={{ boxShadow: '0 0 0 3px rgba(197,72,46,0.15), 0 2px 6px rgba(31,41,51,0.15)' }}
+        style={{ boxShadow: '0 0 0 3px rgba(10,107,140,0.15), 0 2px 6px rgba(12,31,48,0.15)' }}
         whileHover={reduced ? undefined : { scale: 1.14 }}
         whileTap={reduced ? undefined : { scale: 0.94 }}
         transition={reduced ? undefined : { type: 'spring', stiffness: 420, damping: 22 }}
@@ -788,7 +788,7 @@ function CompareView({ imageUrl, preview }: { imageUrl: string; preview: React.R
             <ReactCompareSliderImage
               src={imageUrl}
               alt="Original screenshot"
-              style={{ objectFit: 'contain', background: '#F4F1EA' }}
+              style={{ objectFit: 'contain', background: '#D9E9F3' }}
             />
           }
           itemTwo={<div className="h-full w-full bg-white">{preview}</div>}
@@ -835,28 +835,26 @@ function EmptyState({
       {/* ── HERO ─────────────────────────────────────────────────────────
           Asymmetric two-column: editorial headline + capture instrument on the
           left, the live ambient trace demonstration on the right. */}
-      <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14 pt-2 md:pt-8">
-        {/* Left: the pitch + the capture plate. */}
-        <div className="flex flex-col">
-          <span className="annotate text-ocean">studio · screenshot to component</span>
-          {/* Oversized display headline with real typographic hierarchy: the verb
-              "Trace" carries the most weight; the object reads lighter + larger. */}
-          <h1 className="mt-4 font-display text-ink leading-[0.98] tracking-[-0.03em]">
-            <span className="block text-[clamp(2.6rem,6vw,4.25rem)] font-bold">Trace</span>
-            <span className="block text-[clamp(2.6rem,6vw,4.25rem)] font-light text-graphite">
-              any screenshot
-            </span>
-            <span className="block text-[clamp(2.6rem,6vw,4.25rem)] font-bold">
-              into <span className="text-compass">live React.</span>
-            </span>
-          </h1>
-          <p className="mt-6 max-w-md text-body text-graphite leading-relaxed">
+      <div className="pt-2 md:pt-6">
+        {/* Title block: a drawing cartouche. One colour, one weight pair, no accent word. */}
+        <div className="flex flex-col gap-5 border-b-hair border-line-strong pb-6 md:flex-row md:items-end md:justify-between md:gap-10">
+          <div>
+            <span className="annotate text-ocean">studio · screenshot to component</span>
+            <h1 className="mt-3 font-display text-ink leading-[1.02] tracking-[-0.03em] text-[clamp(2.1rem,5vw,3.5rem)] font-semibold text-balance">
+              Trace any screenshot into live React.
+            </h1>
+          </div>
+          <p className="max-w-md text-body text-graphite leading-relaxed">
             Drop a UI screenshot. Trace detects each element, maps it to your
             design-system catalog, and renders a real, editable component you can
             ship.
           </p>
+        </div>
 
-          {/* The capture plate: a precision instrument, the visual star of the
+        {/* The signature plate: a cached example, traced from screenshot to code. */}
+        <TracePlate className="mt-6" />
+
+        {/* The capture plate: a precision instrument, the visual star of the
               left column. Reticle corners + a measurement annotation. */}
           <div
             onDragOver={onDragOver}
@@ -864,7 +862,7 @@ function EmptyState({
             onDrop={onDrop}
             onMouseMove={spotlightMove}
             className={cn(
-              'spotlight reticle pad-margin draft-plate mt-8 border-hair px-7 py-9 transition-colors',
+              'spotlight reticle pad-margin draft-plate mt-8 border-hair px-6 py-7 md:px-7 transition-colors',
               isDragging ? 'border-compass bg-compass/[0.05]' : 'border-line-strong',
             )}
           >
@@ -931,27 +929,11 @@ function EmptyState({
               }}
             />
             {error && (
-              <p className="mt-4 text-sm text-compass" role="alert">
+              <p className="mt-4 text-sm font-medium text-[#B3361F]" role="alert">
                 {error}
               </p>
             )}
           </div>
-        </div>
-
-        {/* Right (lg) / below the plate (md): the ambient demonstration — show,
-            don't tell. A faint sample is scanned by a reticle, trace-lines draw to
-            detection labels, then loops. The demo is the identity-defining element,
-            so it stays visible at tablet (stacked below the plate) rather than being
-            hidden — which previously left a barren void to the right at ~768px. */}
-        <div className="relative block">
-          <span className="annotate text-ocean">live · what trace does</span>
-          <div className="reticle draft-plate mt-3 border-hair border-line-default p-4">
-            <AmbientTrace className="mx-auto aspect-[4/3] w-full max-w-md lg:max-w-none" />
-          </div>
-          <p className="mt-3 text-right text-[11px] text-muted font-mono">
-            screenshot → detection → component
-          </p>
-        </div>
       </div>
 
       {/* ── HOW IT READS — editorial numerals over hairlines, not boxes ─────── */}
@@ -967,7 +949,7 @@ function EmptyState({
               {/* Oversized outline index numeral — the editorial anchor. */}
               <span
                 className="font-display text-[3.25rem] leading-none font-bold text-transparent"
-                style={{ WebkitTextStroke: '1px rgba(197,72,46,0.55)' }}
+                style={{ WebkitTextStroke: '1px rgba(10,107,140,0.55)' }}
                 aria-hidden="true"
               >
                 {n}
@@ -1031,7 +1013,7 @@ function EmptyState({
                   <span className="text-sm font-display font-semibold text-ink group-hover:text-compass">
                     {example.title}
                   </span>
-                  <span className="font-mono text-[10px] text-muted opacity-0 transition-opacity group-hover:opacity-100">
+                  <span className="font-mono text-[10px] text-muted transition-colors group-hover:text-compass">
                     open →
                   </span>
                 </div>
@@ -1311,7 +1293,7 @@ export function ScreenshotStudio() {
     canvas.height = Math.round(rect.height);
     const ctx = canvas.getContext('2d');
     if (ctx) {
-      ctx.strokeStyle = '#C5482E';
+      ctx.strokeStyle = '#0A6B8C';
       ctx.lineWidth = 3;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
@@ -1699,7 +1681,6 @@ export function ScreenshotStudio() {
                               width: `${(xmax - xmin) / 10}%`,
                               height: `${(ymax - ymin) / 10}%`,
                               borderWidth: 1,
-                              opacity: active ? 1 : 0.45,
                             }}
                           >
                             {/* Index chip at the box top-left. Sits flush INSIDE the
@@ -1709,7 +1690,7 @@ export function ScreenshotStudio() {
                             <span
                               className={cn(
                                 'absolute top-0 left-0 px-0.5 font-mono text-[8px] leading-[1.3] tabular-nums text-white sm:px-1 sm:text-[9px] sm:leading-[1.4]',
-                                guessed ? 'bg-compass/70' : 'bg-compass',
+                                guessed ? 'bg-ocean' : 'bg-compass',
                               )}
                             >
                               {String(i + 1).padStart(2, '0')}
@@ -1958,7 +1939,7 @@ export function ScreenshotStudio() {
                               'px-4 py-3 border-t-hair border-line-soft first:border-t-0 transition-colors',
                               traced && 'cursor-pointer focus:outline-none',
                               active && 'bg-compass/[0.06] ring-1 ring-inset ring-compass/40',
-                              dimmed && 'opacity-50',
+                              dimmed && 'bg-ink/[0.035]',
                             )}
                           >
                             <div className="flex items-baseline justify-between gap-2">

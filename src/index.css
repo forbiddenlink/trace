@@ -1,6 +1,7 @@
 /* Trace — "Precision Drafting" design system.
-   Warm vellum paper, graphite ink, red-pencil vermilion accent, blueprint indigo
+   Warm tracing paper paper, graphite ink, blueprint cyan accent, blueprint indigo
    secondary. Line-work is the motif: hairline rules, faint construction grid. */
+
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
 @import "tailwindcss";
@@ -11,32 +12,32 @@
 @layer base {
   :root {
     /* Paper / surfaces */
-    --bg-base: #F4F1EA;
-    --bg-elevated: #FBFAF5;
-    --bg-surface: #FBFAF5;
+    --bg-base: #D9E9F3;
+    --bg-elevated: #EAF3F9;
+    --bg-surface: #EAF3F9;
 
     /* Ink / text (graphite) */
-    --text-primary: #1F2933;
-    --text-secondary: #3A4654;
-    --text-muted: #5A6672;
+    --text-primary: #0C1F30;
+    --text-secondary: #2B4258;
+    --text-muted: #4A6177;
 
     /* Accents */
-    --accent-primary: #C5482E;       /* red-pencil vermilion */
-    --accent-primary-hover: #A23A23;
-    --accent-blueprint: #27496D;     /* blueprint indigo */
+    --accent-primary: #0A6B8C;       /* blueprint cyan */
+    --accent-primary-hover: #07526D;
+    --accent-blueprint: #163A5F;     /* blueprint indigo */
     --accent-ochre: #9A6B12;
 
     /* Status */
-    --success: #3C6E47;
+    --success: #2F6B4F;
     --warning: #9A6B12;
-    --error: #C5482E;
+    --error: #B3361F;
 
     /* Construction line-work */
-    --line-strong: rgba(31, 41, 51, 0.22);
-    --line-default: rgba(31, 41, 51, 0.14);
-    --line-soft: rgba(31, 41, 51, 0.10);
-    --line-faint: rgba(31, 41, 51, 0.05);
-    --code-bg: #161C22;
+    --line-strong: rgba(12,31,48, 0.22);
+    --line-default: rgba(12,31,48, 0.14);
+    --line-soft: rgba(12,31,48, 0.10);
+    --line-faint: rgba(12,31,48, 0.05);
+    --code-bg: #0B1B2A;
 
     /* Safe-area fallbacks */
     --sat: env(safe-area-inset-top, 0px);
@@ -106,13 +107,13 @@
 
   /* Clean drafting plate. A tiled construction-grid background is an overused AI
      tell, so Trace's identity comes from its LINE-WORK — trace-lines, reticle
-     corners, dimension annotations, the vermilion accent — over clean vellum, not
+     corners, dimension annotations, the cyan accent — over clean tracing paper, not
      a graph-paper wash. This is just the elevated paper surface. */
   .draft-plate {
     background-color: var(--bg-elevated);
   }
 
-  /* Engineer's-pad margin rule: a single vermilion vertical hairline set in from
+  /* Engineer's-pad margin rule: a single cyan vertical hairline set in from
      the left edge of a frame, the way a drafting pad has one red margin line. A
      distinctive, NON-repeating motif — one rule, not a pattern. */
   .pad-margin {
@@ -135,7 +136,7 @@
   .rule-y { border-right: 0.5px solid var(--line-default); }
 
   /* ── Spotlight glow ────────────────────────────────────────────
-     A faint vermilion pool of light that tracks the cursor across a plate,
+     A faint cyan pool of light that tracks the cursor across a plate,
      like an angled desk lamp over a drafting board. The consumer sets
      --mx / --my (px, cursor offset) via a mousemove handler; the glow only
      shows on hover. Reduced-motion snaps the fade (global rule) — the light
@@ -148,7 +149,7 @@
     border-radius: inherit;
     background: radial-gradient(
       170px circle at var(--mx, 50%) var(--my, 50%),
-      rgba(197, 72, 46, 0.10),
+      rgba(10,107,140, 0.10),
       transparent 62%
     );
     opacity: 0;
@@ -256,7 +257,7 @@
   }
 
   /* ── Plotter head ──────────────────────────────────────────────
-     A 1px vermilion vertical pen sweeping left → right across a track, as if a
+     A 1px cyan vertical pen sweeping left → right across a track, as if a
      pen plotter were laying ink. Loops while the step is active. The trailing
      ink fill is a separate element growing under the head. The head animates
      `left` (0 → 100% of the track) since it is a 1px element and translateX
@@ -379,7 +380,7 @@
 /* ─── Selection ───────────────────────────────────── */
 
 ::selection {
-  background: rgba(197, 72, 46, 0.18);
+  background: rgba(10,107,140, 0.18);
   color: var(--text-primary);
 }
 
@@ -390,4 +391,13 @@
     outline: 2px solid Highlight;
     outline-offset: 2px;
   }
+}
+
+/* Trace lines on the hero plate wipe in once; reduced motion snaps them (global rule above). */
+@keyframes plate-wipe {
+  from { clip-path: inset(0 100% 0 0); }
+  to { clip-path: inset(0 0 0 0); }
+}
+.plate-lines {
+  animation: plate-wipe 900ms cubic-bezier(0.23, 1, 0.32, 1) both;
 }

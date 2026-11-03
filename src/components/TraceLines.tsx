@@ -187,7 +187,7 @@ export function TraceLines({
           <g key={p.id} style={{ transition: 'opacity 0.2s ease' }} opacity={baseOpacity}>
             <motion.path
               d={d}
-              stroke="#C5482E"
+              stroke="#0A6B8C"
               strokeWidth={isHovered ? 1.4 : 0.85}
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -205,7 +205,7 @@ export function TraceLines({
             {!reduced && isHovered && (
               <motion.path
                 d={d}
-                stroke="#C5482E"
+                stroke="#0A6B8C"
                 strokeWidth={1.4}
                 strokeLinecap="round"
                 strokeDasharray="2 64"
@@ -222,14 +222,14 @@ export function TraceLines({
               />
             )}
             {/* Node dots: source exit, inspector entry, preview terminal. */}
-            <circle cx={p.x1} cy={p.y1} r={isHovered ? 2.5 : 2} fill="#C5482E" />
-            <circle cx={p.x2} cy={p.y2} r={2} fill="#27496D" />
+            <circle cx={p.x1} cy={p.y1} r={isHovered ? 2.5 : 2} fill="#0A6B8C" />
+            <circle cx={p.x2} cy={p.y2} r={2} fill="#163A5F" />
             <circle
               cx={p.x3}
               cy={p.y3}
               r={3}
-              fill="#FBFAF5"
-              stroke="#C5482E"
+              fill="#EAF3F9"
+              stroke="#0A6B8C"
               strokeWidth={1.4}
             />
           </g>
