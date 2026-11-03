@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 // Trace — "Precision Drafting" design system.
-// Palette: warm vellum paper, graphite ink, red-pencil vermilion (primary accent),
+// Palette: blueprint tracing paper, graphite ink, blueprint cyan (primary accent),
 // blueprint indigo (secondary accent, used sparingly). Tinted neutrals — never pure
 // #fff / #000. Token KEYS are preserved from the prior system so every consumer keeps
 // compiling; only the VALUES changed to the drafting palette.
@@ -13,46 +13,46 @@ export default {
         extend: {
             colors: {
                 // ── Paper / surfaces (warm vellum, never pure white) ──
-                parchment: '#F4F1EA',     // base canvas — warm vellum
-                'warm-white': '#FBFAF5',  // elevated surface — lighter vellum
-                vellum: '#F4F1EA',
-                surface: '#FBFAF5',
+                parchment: '#D9E9F3',     // base canvas — warm vellum
+                'warm-white': '#EAF3F9',  // elevated surface — lighter vellum
+                vellum: '#D9E9F3',
+                surface: '#EAF3F9',
 
                 // ── Ink / text (graphite, tinted warm-cool, all >=4.5:1 on vellum) ──
-                ink: '#1F2933',           // primary text — graphite ink (~13:1 on vellum)
-                'deep-charcoal': '#161C22',
-                graphite: '#3A4654',      // secondary ink
-                muted: '#5A6672',         // tertiary text — darkened for >=4.5:1 (was #7A8B8C)
+                ink: '#0C1F30',           // primary text — graphite ink (~13:1 on vellum)
+                'deep-charcoal': '#0B1B2A',
+                graphite: '#2B4258',      // secondary ink
+                muted: '#4A6177',         // tertiary text — darkened for >=4.5:1 (was #7A8B8C)
 
-                // ── Primary accent: red-pencil vermilion ──
+                // ── Primary accent: blueprint cyan ──
                 compass: {
-                    DEFAULT: '#C5482E',   // vermilion — primary accent (4.5:1+ on vellum)
-                    dark: '#A23A23',
-                    light: '#D9694F',
+                    DEFAULT: '#0A6B8C',   // vermilion — primary accent (4.5:1+ on vellum)
+                    dark: '#07526D',
+                    light: '#3FA9CB',
                 },
                 vermilion: {
-                    DEFAULT: '#C5482E',
-                    dark: '#A23A23',
-                    light: '#D9694F',
+                    DEFAULT: '#0A6B8C',
+                    dark: '#07526D',
+                    light: '#3FA9CB',
                 },
 
                 // ── Secondary accent: blueprint indigo (used sparingly) ──
                 ocean: {
-                    DEFAULT: '#27496D',   // blueprint indigo
-                    dark: '#1C3650',
-                    light: '#E5EAF1',
+                    DEFAULT: '#163A5F',   // blueprint indigo
+                    dark: '#0F2A47',
+                    light: '#E3EEF6',
                 },
                 blueprint: {
-                    DEFAULT: '#27496D',
-                    dark: '#1C3650',
-                    light: '#E5EAF1',
+                    DEFAULT: '#163A5F',
+                    dark: '#0F2A47',
+                    light: '#E3EEF6',
                 },
 
                 // ── Status: surveyor green (good) + ochre (mid/warning) ──
                 terrain: {
-                    DEFAULT: '#3C6E47',   // muted surveyor green — success
-                    dark: '#2C5235',
-                    light: '#E7EEE8',
+                    DEFAULT: '#2F6B4F',   // muted surveyor green — success
+                    dark: '#214E39',
+                    light: '#E2EFE9',
                 },
                 gold: {
                     DEFAULT: '#9A6B12',   // drafting ochre — warning (darkened for contrast on light)
@@ -61,9 +61,9 @@ export default {
                 },
 
                 // ── Construction-line ink (the line-work motif) ──
-                'line-strong': 'rgba(31, 41, 51, 0.22)',
-                'line-soft': 'rgba(31, 41, 51, 0.10)',
-                'line-faint': 'rgba(31, 41, 51, 0.05)',
+                'line-strong': 'rgba(12,31,48, 0.22)',
+                'line-soft': 'rgba(12,31,48, 0.10)',
+                'line-faint': 'rgba(12,31,48, 0.05)',
             },
             fontFamily: {
                 // Display = refined technical grotesque. Body = clean humanist sans.
@@ -141,11 +141,11 @@ export default {
             },
             boxShadow: {
                 // Paper sits flat on a table — shadows are faint, low, cool-graphite.
-                'xs': '0 1px 1px rgba(31,41,51,0.04)',
-                'sm': '0 1px 2px rgba(31,41,51,0.05)',
-                'DEFAULT': '0 1px 3px rgba(31,41,51,0.06)',
-                'md': '0 2px 6px rgba(31,41,51,0.07)',
-                'lg': '0 6px 18px rgba(31,41,51,0.08)',
+                'xs': '0 1px 1px rgba(12,31,48,0.04)',
+                'sm': '0 1px 2px rgba(12,31,48,0.05)',
+                'DEFAULT': '0 1px 3px rgba(12,31,48,0.06)',
+                'md': '0 2px 6px rgba(12,31,48,0.07)',
+                'lg': '0 6px 18px rgba(12,31,48,0.08)',
             },
             transitionDuration: {
                 DEFAULT: '150ms',

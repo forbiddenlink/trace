@@ -58,15 +58,15 @@ function TraceWordmark() {
         className="flex-shrink-0"
       >
         {/* origin dot */}
-        <circle cx="3" cy="10" r="2.5" fill="#C5482E" />
+        <circle cx="3" cy="10" r="2.5" fill="#0A6B8C" />
         {/* trace / construction line */}
-        <line x1="6" y1="10" x2="21" y2="10" stroke="#27496D" strokeWidth="1" strokeDasharray="2 2" />
+        <line x1="6" y1="10" x2="21" y2="10" stroke="#163A5F" strokeWidth="1" strokeDasharray="2 2" />
         {/* reticle target */}
-        <circle cx="24" cy="10" r="4.5" stroke="#1F2933" strokeWidth="1" fill="none" />
-        <line x1="24" y1="3.5" x2="24" y2="6.5" stroke="#1F2933" strokeWidth="1" />
-        <line x1="24" y1="13.5" x2="24" y2="16.5" stroke="#1F2933" strokeWidth="1" />
-        <line x1="17.5" y1="10" x2="20" y2="10" stroke="#1F2933" strokeWidth="1" />
-        <line x1="28" y1="10" x2="30" y2="10" stroke="#1F2933" strokeWidth="1" />
+        <circle cx="24" cy="10" r="4.5" stroke="#0C1F30" strokeWidth="1" fill="none" />
+        <line x1="24" y1="3.5" x2="24" y2="6.5" stroke="#0C1F30" strokeWidth="1" />
+        <line x1="24" y1="13.5" x2="24" y2="16.5" stroke="#0C1F30" strokeWidth="1" />
+        <line x1="17.5" y1="10" x2="20" y2="10" stroke="#0C1F30" strokeWidth="1" />
+        <line x1="28" y1="10" x2="30" y2="10" stroke="#0C1F30" strokeWidth="1" />
       </svg>
       <span className="font-display text-base font-bold tracking-tight text-ink lowercase">
         trace
