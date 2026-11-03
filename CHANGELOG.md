@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/forbiddenlink/trace/compare/v1.0.9...v1.1.0) (2026-11-03)
+
+
+### Features
+
+* tracing-paper identity with a before/after trace plate ([#123](https://github.com/forbiddenlink/trace/issues/123)) ([b97f35f](https://github.com/forbiddenlink/trace/commit/b97f35ff61f5237b22cef9b946cb8cc4047ca712))
+
 ## [1.0.9](https://github.com/forbiddenlink/trace/compare/v1.0.8...v1.0.9) (2026-10-27)
 
 
