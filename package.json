@@ -66,27 +66,5 @@
   },
   "description": "Paste a screenshot, get a real, runnable React component. AI screenshot-to-component with design-system grounding, live preview, self-repair, and an accessibility score.",
   "license": "MIT",
-  "pnpm": {
-    "overrides": {
-      "brace-expansion@>=5.0.0 <5.0.6": ">=5.0.6 <6.0.0",
-      "cookie": ">=0.7.0 <2.0.0",
-      "flatted": ">=3.3.3 <4.0.0",
-      "js-yaml": ">=4.3.1 <5.0.0",
-      "minimatch@10": ">=10.2.3 <11",
-      "minimatch@>=10.0.0 <10.2.3": ">=10.2.3 <11.0.0",
-      "picomatch": ">=4.0.4 <5.0.0",
-      "protobufjs": ">=7.5.5 <8.0.0",
-      "rollup": ">=4.59.0 <5.0.0",
-      "shell-quote": ">=1.11.0 <2",
-      "shell-quote@1": ">=1.11.0 <2",
-      "systeminformation": ">=5.31.0 <6.0.0",
-      "undici": ">=7.30.1 <8.0.0",
-      "undici@6": ">=6.27.0 <7",
-      "vite": ">=7.3.2 <9.0.0",
-      "brace-expansion@5": ">=5.0.12 <6",
-      "source-map-js@1": ">=1.2.2 <2.0.0",
-      "brace-expansion@1": ">=1.1.21 <2.0.0"
-    }
-  },
   "packageManager": "pnpm@10.34.9"
 }
