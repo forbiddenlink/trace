@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/forbiddenlink/trace/compare/v1.1.0...v1.1.1) (2026-11-13)
+
+
+### Bug Fixes
+
+* **api:** durable per-IP and global rate limit on paid /api/generate ([#126](https://github.com/forbiddenlink/trace/issues/126)) ([92ad92c](https://github.com/forbiddenlink/trace/commit/92ad92cce3628369a26c742f376744f0f491aa47))
+
 ## [1.1.0](https://github.com/forbiddenlink/trace/compare/v1.0.9...v1.1.0) (2026-11-03)
 
 
