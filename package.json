@@ -25,6 +25,8 @@
     "@ai-sdk/google": "^4.0.56",
     "@codesandbox/sandpack-react": "^2.20.0",
     "@sentry/react": "^10.72.0",
+    "@upstash/ratelimit": "^2.2.0",
+    "@upstash/redis": "^1.41.0",
     "ai": "^7.0.83",
     "axe-core": "^4.13.0",
     "clsx": "^2.1.1",

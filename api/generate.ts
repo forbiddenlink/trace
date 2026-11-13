@@ -1,4 +1,63 @@
 /**
+ * Durable limit for the paid endpoint. When UPSTASH_REDIS_REST_URL and
+ * UPSTASH_REDIS_REST_TOKEN are set, a shared Upstash sliding window applies per IP, plus a
+ * global ceiling (GLOBAL_RATE_LIMIT_MAX per hour, default 300) so rotating IPs cannot multiply
+ * spend. Without them the in-memory limiter above is used (one production warning). If the
+ * store errors or times out it fails closed. Returns true when the request must be refused.
+ */
+const GLOBAL_RATE_LIMIT_MAX = Number(process.env.GLOBAL_RATE_LIMIT_MAX ?? 300);
+let warnedNoRedis = false;
+const durableLimiters = new Map<string, Promise<{ limit(k: string): Promise<{ success: boolean; reason?: string }> }>>();
+
+function durableLimiter(name: string, max: number, window: `${number} s`) {
+  let l = durableLimiters.get(name);
+  if (!l) {
+    l = (async () => {
+      const [{ Ratelimit }, { Redis }] = await Promise.all([
+        import('@upstash/ratelimit'),
+        import('@upstash/redis'),
+      ]);
+      return new Ratelimit({
+        redis: new Redis({
+          url: process.env.UPSTASH_REDIS_REST_URL as string,
+          token: process.env.UPSTASH_REDIS_REST_TOKEN as string,
+        }),
+        limiter: Ratelimit.slidingWindow(max, window),
+        prefix: `trace:rl:${name}`,
+        timeout: 2000,
+      });
+    })();
+    durableLimiters.set(name, l);
+  }
+  return l;
+}
+
+export async function isRateLimitedDurable(ip: string): Promise<boolean> {
+  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) {
+    if (process.env.NODE_ENV === 'production' && !warnedNoRedis) {
+      warnedNoRedis = true;
+      console.warn(
+        '[api/generate] UPSTASH_REDIS_REST_URL / UPSTASH_REDIS_REST_TOKEN not set: rate limit is per-instance and does not cap spend across serverless instances.',
+      );
+    }
+    return isRateLimited(ip);
+  }
+  try {
+    const perIp = await durableLimiter('ip', RATE_LIMIT_MAX, `${Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)} s`);
+    const a = await perIp.limit(ip);
+    if (a.reason === 'timeout') throw new Error('rate limit store timed out');
+    if (!a.success) return true;
+    const global = await durableLimiter('global', GLOBAL_RATE_LIMIT_MAX, '3600 s');
+    const b = await global.limit('all');
+    if (b.reason === 'timeout') throw new Error('rate limit store timed out');
+    return !b.success;
+  } catch (error) {
+    console.error('[api/generate] rate limit store unavailable, failing closed:', error);
+    return true;
+  }
+}
+
+/**
  * POST /api/generate — screenshot -> React component generation (Vercel serverless).
  *
  * SELF-CONTAINED ON PURPOSE: the Vercel Node builder compiles only this entry file and
@@ -555,7 +614,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   // Best-effort per-IP throttle on the paid endpoint before any model work.
-  if (isRateLimited(clientIp(req))) {
+  if (await isRateLimitedDurable(clientIp(req))) {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Retry-After', String(Math.ceil(RATE_LIMIT_WINDOW_MS / 1000)));
     return res.status(429).json({ error: 'Too many requests. Please slow down and try again in a minute.' });
