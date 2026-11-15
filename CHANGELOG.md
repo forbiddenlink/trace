@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/forbiddenlink/trace/compare/v1.1.2...v1.1.3) (2026-11-15)
+
+
+### Bug Fixes
+
+* **preview:** pin lucide-react in Sandpack instead of 'latest' ([#130](https://github.com/forbiddenlink/trace/issues/130)) ([85b41d6](https://github.com/forbiddenlink/trace/commit/85b41d67d19f7e1e241eb6cbd8b57f6d3bc3f126))
+
 ## [1.1.2](https://github.com/forbiddenlink/trace/compare/v1.1.1...v1.1.2) (2026-11-15)
 
 
