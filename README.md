@@ -77,6 +77,42 @@ pnpm dev
 
 Open http://localhost:5173.
 
+### Optional configuration
+
+All optional; the names below are read in `api/generate.ts`, `src/sentry.ts`, and the app:
+
+- `GEMINI_MODEL`: override the model (default `gemini-2.5-flash`)
+- `RATE_LIMIT_MAX`, `RATE_LIMIT_WINDOW_MS`, `GLOBAL_RATE_LIMIT_MAX`: per-IP and global request limits (defaults 10 per minute and 300 per hour)
+- `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`: make the rate limits durable across serverless instances
+- `TRACE_DISABLED`: kill switch for generation
+- `VITE_SENTRY_DSN`: error reporting
+
+`.env.example` lists the template.
+
+### Scripts
+
+```bash
+pnpm dev            # Vite dev server with /api/generate middleware
+pnpm build          # tsc -b && vite build
+pnpm preview        # preview the production build
+pnpm test           # vitest
+pnpm test:e2e       # playwright
+pnpm lint           # eslint
+pnpm biome:check    # biome lint and format check
+pnpm gallery        # rebuild the cached example gallery
+```
+
+### Project structure
+
+```text
+api/          # Vercel serverless function: generate.ts
+src/          # React app (components, lib, data, services)
+data/         # component catalog and accessibility index data
+e2e/          # Playwright specs
+scripts/      # gallery, OG image, demo capture, accessibility self-audit
+docs/         # demo.gif and audit reports
+```
+
 ## Try it with no key
 
 Trace ships with an example gallery of preloaded UIs with cached generation results. Click any thumbnail on the empty state to load a full result (detection inspector, live preview, accessibility score) with no API key and no network call. It is the fastest way to see what Trace does.
