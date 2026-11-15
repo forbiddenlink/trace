@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/forbiddenlink/trace/compare/v1.1.1...v1.1.2) (2026-11-15)
+
+
+### Bug Fixes
+
+* **seo:** meta description no longer claims it uses the visitor's design system ([#128](https://github.com/forbiddenlink/trace/issues/128)) ([bc3c238](https://github.com/forbiddenlink/trace/commit/bc3c238a6c59d9d5b9bd7035f8b344273aa2d98c))
+
 ## [1.1.1](https://github.com/forbiddenlink/trace/compare/v1.1.0...v1.1.1) (2026-11-13)
 
 
