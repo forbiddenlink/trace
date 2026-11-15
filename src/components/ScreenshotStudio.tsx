@@ -12,6 +12,7 @@ import { ReactCompareSlider, ReactCompareSliderImage } from 'react-compare-slide
 import { cn } from '../lib/utils';
 import { imageToBase64 } from '../services/vision';
 import { GALLERY_EXAMPLES } from '../data/gallery';
+import { SANDPACK_DEPENDENCIES } from '../lib/preview/sandpack-dependencies';
 import { TraceLines } from './TraceLines';
 import { TracePlate } from './TracePlate';
 import {
@@ -1795,7 +1796,7 @@ export function ScreenshotStudio() {
                     // URLs as <link> tags) left utility classes inert — hence no Tailwind here.
                     '/index.tsx': { code: A11Y_ENTRY_SOURCE, hidden: true },
                   }}
-                  customSetup={{ dependencies: { 'lucide-react': 'latest' } }}
+                  customSetup={{ dependencies: SANDPACK_DEPENDENCIES }}
                 >
                   {/* Toolbar: view toggle + export actions */}
                   <div className="flex flex-wrap items-center justify-between gap-2 border-b-hair border-line-default bg-warm-white px-4 py-2">
