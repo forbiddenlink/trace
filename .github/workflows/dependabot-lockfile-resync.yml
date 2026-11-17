@@ -5,18 +5,22 @@ name: Dependabot lockfile resync
 # ERR_PNPM_LOCKFILE_CONFIG_MISMATCH and the PR can never go green. This puts the
 # block back and pushes the corrected lockfile to the PR branch.
 #
-# pull_request_target is needed to get a token that can push. Safe here: the job
-# only runs for dependabot's own in-repo branches, and `--lockfile-only
-# --ignore-scripts` resolves the manifest without executing any package code.
+# Runs on pull_request, not pull_request_target (GitHub blocks the latter by default
+# in public repos from 2026-12-02). Dependabot-triggered pull_request runs honor the
+# job-level permissions below. Gated on the PR author plus a same-repo head, and
+# `--lockfile-only --ignore-scripts` resolves the manifest without running package code.
+# Secrets on Dependabot PRs come from the Dependabot secret store, so a missing
+# AUTOMATION_TOKEN falls back to github.token (pushed commits then need CI approval).
 
-on: pull_request_target
+on: pull_request
 
-permissions:
-  contents: write
+permissions: {}
 
 jobs:
   resync:
-    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
       - name: Check out the pull request branch

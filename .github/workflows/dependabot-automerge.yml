@@ -6,20 +6,20 @@ name: Dependabot auto-merge
 # merges immediately instead of waiting for checks. That is how a dependabot lockfile
 # that drops the pnpm `overrides:` block reached main and broke production builds.
 #
-# Uses pull_request_target so GITHUB_TOKEN runs in the base-branch context
-# (dependabot/fetch-metadata needs that to read commit metadata without a 403).
-# Safe: gated on the PR author being dependabot[bot] (not the triggering actor, which a
-# reopen/comment can change); no PR code is checked out or executed.
-on: pull_request_target
+# Runs on pull_request, not pull_request_target (blocked by default in public repos
+# from 2026-12-02). Dependabot pull_request runs honor the job-level permissions below.
+# Gated on the PR author plus a same-repo head; no PR code is checked out or executed.
+on: pull_request
 
-permissions:
-  contents: write
-  pull-requests: write
-  actions: read
+permissions: {}
 
 jobs:
   automerge:
-    if: ${{ github.event.pull_request.user.login == 'dependabot[bot]' }}
+    if: github.event.pull_request.user.login == 'dependabot[bot]' && github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: read
     runs-on: ubuntu-latest
     steps:
       - name: Dependabot metadata
