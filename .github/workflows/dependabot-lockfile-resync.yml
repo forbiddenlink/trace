@@ -8,7 +8,8 @@ name: Dependabot lockfile resync
 # Runs on pull_request, not pull_request_target (GitHub blocks the latter by default
 # in public repos from 2026-12-02). Dependabot-triggered pull_request runs honor the
 # job-level permissions below. Gated on the PR author plus a same-repo head, and
-# `--lockfile-only --ignore-scripts` resolves the manifest without running package code.
+# `--lockfile-only --ignore-scripts --ignore-pnpmfile` resolves the manifest without running package
+# or repo code. The push token is not on disk during install; only the push step sees it.
 # Secrets on Dependabot PRs come from the Dependabot secret store, so a missing
 # AUTOMATION_TOKEN falls back to github.token (pushed commits then need CI approval).
 
@@ -27,11 +28,7 @@ jobs:
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           ref: ${{ github.event.pull_request.head.ref }}
-          persist-credentials: true
-          # A PAT makes the pushed commit retrigger CI. With the default
-          # GITHUB_TOKEN the push lands but its workflow runs sit at
-          # action_required until someone approves them.
-          token: ${{ secrets.AUTOMATION_TOKEN || github.token }}
+          persist-credentials: false
 
       - uses: pnpm/action-setup@ea17c68df8912ef543352723c149a84f56e3d413 # v6.1.0
 
@@ -44,7 +41,7 @@ jobs:
         run: |
           set -uo pipefail
           before=$(sha256sum pnpm-lock.yaml | cut -d' ' -f1)
-          pnpm install --lockfile-only --ignore-scripts
+          pnpm install --lockfile-only --ignore-scripts --ignore-pnpmfile
           after=$(sha256sum pnpm-lock.yaml | cut -d' ' -f1)
           if [ "$before" = "$after" ]; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
@@ -54,15 +51,19 @@ jobs:
 
       - name: Verify a frozen install now succeeds
         if: steps.resync.outputs.changed == 'true'
-        run: pnpm install --frozen-lockfile --lockfile-only
+        run: pnpm install --frozen-lockfile --lockfile-only --ignore-scripts --ignore-pnpmfile
 
       - name: Push the corrected lockfile
         if: steps.resync.outputs.changed == 'true'
         env:
           HEAD_REF: ${{ github.event.pull_request.head.ref }}
+          # A PAT makes the pushed commit retrigger CI. With the default
+          # GITHUB_TOKEN the push lands but its workflow runs sit at
+          # action_required until someone approves them.
+          PUSH_TOKEN: ${{ secrets.AUTOMATION_TOKEN || github.token }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pnpm-lock.yaml
           git commit -m "fix(deps): resync pnpm-lock.yaml with package.json overrides"
-          git push origin "HEAD:$HEAD_REF"
+          git push "https://x-access-token:${PUSH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:$HEAD_REF"
