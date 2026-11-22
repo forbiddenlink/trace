@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/forbiddenlink/trace/compare/v1.1.3...v1.1.4) (2026-11-22)
+
+
+### Bug Fixes
+
+* **deps:** resolve the minimatch advisory ([#134](https://github.com/forbiddenlink/trace/issues/134)) ([d49b86d](https://github.com/forbiddenlink/trace/commit/d49b86d62c633a1e8e23ed44f70e0f8cc94ddff5))
+
 ## [1.1.3](https://github.com/forbiddenlink/trace/compare/v1.1.2...v1.1.3) (2026-11-15)
 
 
