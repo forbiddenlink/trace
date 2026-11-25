@@ -477,7 +477,7 @@ export async function generateFromScreenshot(
     throw new Error('That image is too large. Please try one under 4 MB.');
   }
 
-  const modelId = process.env.GEMINI_MODEL ?? 'gemini-2.5-flash';
+  const modelId = process.env.GEMINI_MODEL ?? 'gemini-3.6-flash';
   const image = Uint8Array.from(Buffer.from(parsed.data, 'base64'));
   const mediaType = parsed.mimeType;
 

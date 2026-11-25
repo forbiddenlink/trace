@@ -49,7 +49,7 @@ Sandpack live render  (editable React + TS, Tailwind via CDN)
 |-------|------------|
 | Framework | Vite, React 19, TypeScript (strict) |
 | Styling | Tailwind CSS (precision-drafting theme: vellum, graphite, vermilion) |
-| AI | `@ai-sdk/google` + `ai` v7, model `gemini-2.5-flash` |
+| AI | `@ai-sdk/google` + `ai` v7, model `gemini-3.6-flash` |
 | Sandbox | `@codesandbox/sandpack-react` (Tailwind via CDN) |
 | Accessibility | `axe-core` (loaded from CDN) |
 | Validation | `zod` |
@@ -81,7 +81,7 @@ Open http://localhost:5173.
 
 All optional; the names below are read in `api/generate.ts`, `src/sentry.ts`, and the app:
 
-- `GEMINI_MODEL`: override the model (default `gemini-2.5-flash`)
+- `GEMINI_MODEL`: override the model (default `gemini-3.6-flash`)
 - `RATE_LIMIT_MAX`, `RATE_LIMIT_WINDOW_MS`, `GLOBAL_RATE_LIMIT_MAX`: per-IP and global request limits (defaults 10 per minute and 300 per hour)
 - `UPSTASH_REDIS_REST_URL`, `UPSTASH_REDIS_REST_TOKEN`: make the rate limits durable across serverless instances
 - `TRACE_DISABLED`: kill switch for generation
