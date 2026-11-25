@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.5](https://github.com/forbiddenlink/trace/compare/v1.1.4...v1.1.5) (2026-11-25)
+
+
+### Bug Fixes
+
+* **gemini:** default to gemini-3.6-flash before gemini-2.5-flash shuts down ([#137](https://github.com/forbiddenlink/trace/issues/137)) ([adc182d](https://github.com/forbiddenlink/trace/commit/adc182d0471e149425be63859bee496e8afcff4b))
+
 ## [1.1.4](https://github.com/forbiddenlink/trace/compare/v1.1.3...v1.1.4) (2026-11-22)
 
 
