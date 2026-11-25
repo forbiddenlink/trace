@@ -2,7 +2,7 @@
 
 > Paste a UI screenshot and get a real, runnable React component.
 
-Trace is a browser-based tool that turns a UI screenshot into a self-contained React + TypeScript component. You paste a screenshot from the clipboard, drop a PNG, upload a file, or pick a cached example. Google Gemini (model gemini-2.5-flash) generates the component, constrained to a fixed shadcn-style component catalog listed in the prompt (an in-prompt whitelist, not a vector database or search service), so the output reuses real components and variants instead of inventing generic markup.
+Trace is a browser-based tool that turns a UI screenshot into a self-contained React + TypeScript component. You paste a screenshot from the clipboard, drop a PNG, upload a file, or pick a cached example. Google Gemini (model gemini-3.6-flash) generates the component, constrained to a fixed shadcn-style component catalog listed in the prompt (an in-prompt whitelist, not a vector database or search service), so the output reuses real components and variants instead of inventing generic markup.
 
 The generated component renders live in an editable Sandpack sandbox (Tailwind via CDN). An inspector panel shows each detected screenshot region mapped to a component, variant, and confidence level, tagged grounded, inferred, or guessed. Generated code is compile-checked and auto-repaired by re-prompting on failure; runtime errors in the preview offer a one-click re-prompt with the error attached. axe-core runs against the rendered component for a 0-100 accessibility score and a violations list, with a one-click "Fix accessibility" that re-prompts Gemini to resolve them. Users can also refine the result with a text prompt or by drawing directly on the screenshot.
 

@@ -11,7 +11,7 @@ Challenge), was reframed and renamed Trace for the DEV.to GitHub Finish-Up-A-Tho
 ## Stack
 
 - Vite + React 19 + TypeScript (strict), pnpm 10.34 (lockfile: `pnpm-lock.yaml`)
-- `@ai-sdk/google` + `ai` v7, model `gemini-2.5-flash`, via serverless `api/generate.ts`
+- `@ai-sdk/google` + `ai` v7, model `gemini-3.6-flash`, via serverless `api/generate.ts`
   (Vercel function), with a Vite dev middleware so `/api/generate` also works under `pnpm dev`
 - Tailwind CSS v4 (`@tailwindcss/postcss`) for the "vellum, graphite, vermilion"
   precision-drafting theme
